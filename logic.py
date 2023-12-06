@@ -111,17 +111,12 @@ class Logic(QMainWindow, Ui_Grade_Calc):
                     # it changes the string list to an integer list.
                     try:
                         score = int(studentScoreAsStrings[x])
-                        if 0 <= score <= 100 and score == '':
+                        if 0 <= score <= 100:
                             studentScoreAsInts.append(score)
                         else:
-                            if 0 > score < 100:
-                                self.menu.appendPlainText(
-                                    f'Invalid score for Student {x + 1}. \nScore must be between 0 and 100.')
-                                raise InvalidScoreError()  # Raise the custom exception to break out of both loops
-                            else:
-                                self.menu.appendPlainText(
-                                    f'Invalid score for Student {x + 1}. \nCan not be blank.')
-                                raise InvalidScoreError()  # Raise the custom exception to break out of both loops
+                            self.menu.appendPlainText(
+                                f'Invalid score for Student {x + 1}. \nScore must be between 0 and 100.')
+                            raise InvalidScoreError()  # Raise the custom exception to break out of both loops
                     except ValueError:
                         self.menu.appendPlainText(f'Invalid input for Student {x + 1}. '
                                                   f'\nPlease enter a valid integer score.')
